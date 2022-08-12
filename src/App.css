@@ -1,0 +1,32 @@
+.all-search {
+    background-color: #212529;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    margin-left: 140px;
+    height: 10vh;
+    width: 60vh;
+    font-size: 20px;
+    border-style: solid;
+    border-color: white;
+    margin-top: 10px;
+    border-radius: 7px;
+    text-align: center;
+}
+
+.capital-search {
+    background-color: #212529;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    margin-left: 150px;
+    height: 7vh;
+    width: 40vh;
+    font-size: 20px;
+    border-style: solid;
+    border-color: white;
+    margin-top: 10px;
+    border-radius: 7px;
+    text-align: center;
+
+}
