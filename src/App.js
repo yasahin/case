@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-// or less ideally
-import { Button, Table } from "react-bootstrap";
-import { render } from "@testing-library/react";
+import { Table } from "react-bootstrap";
+import { findCountry } from "./helper/jsonSearch";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -24,13 +22,13 @@ function App() {
   useEffect(() => {
     // case: search & no capital search
     if (search && capitalSearch === "") {
-      const list = searchAll(search);
+      const list = findCountry(search, countries);
       return setRenderList(list);
     }
 
     // case: search & capital search
     if (search && capitalSearch) {
-      const list = searchAll(search);
+      const list = findCountry(search, countries);
       const list2 = list.filter((country) =>
         (country.capital || "")
           .toLowerCase()
@@ -54,18 +52,6 @@ function App() {
       return setRenderList(countries);
     }
   }, [search, countries, capitalSearch]);
-
-  const searchAll = (searchTerm) => {
-    return countries.filter((country) => {
-      return (
-        country.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (country.capital || "")
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase()) ||
-        country.region.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    });
-  };
 
   return (
     <div style={{ backgroundColor: "#2C3034" }}>
@@ -103,6 +89,7 @@ function App() {
                 <td>{country.region}</td>
                 <td>
                   <img
+                    alt="country img"
                     style={{ width: "100px", backgroundColor: "black" }}
                     src={country.flag}
                   />
